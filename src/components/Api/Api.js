@@ -21,7 +21,6 @@ export const fetchMovieId = async movieId => {
     language: LANGUAGE,
   });
   const resp = await axios.get(`movie/${movieId}`, { params });
-  console.log(resp.data);
   return resp.data;
 };
 
@@ -29,7 +28,6 @@ export const fetchMovieQuery = async keyWord => {
   const resp = await axios.get(
     `${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyWord}&language=${LANGUAGE}`
   );
-  console.log(resp.data);
   return resp.data;
 };
 
@@ -41,7 +39,7 @@ export const fetchMovieCast = async movieId => {
   return resp.data;
 };
 
-export const fetchMovieReview = async movieId => {
+export const fetchMovieReviews = async movieId => {
   const params = new URLSearchParams({
     language: LANGUAGE,
   });

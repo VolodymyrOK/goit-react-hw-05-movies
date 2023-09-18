@@ -1,6 +1,6 @@
 import { fetchMovieQuery } from 'components/Api/Api';
 import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const location = useLocation();
@@ -14,6 +14,8 @@ const Movies = () => {
     async function searchMovies() {
       try {
         const dataFetch = await fetchMovieQuery(queryName);
+
+        if (dataFetch.results.length === 0) alert('ничего нет');
         setResults(dataFetch.results);
       } catch (error) {
         console.log(error.code);
@@ -44,30 +46,13 @@ const Movies = () => {
         />
         <button type="submit">Search</button>
       </form>
-
-      {/* <button onClick={() => setSearchParams({ query: queryMovie })}>
-        Search
-      </button> */}
       <ul>
-        {/* {visibleMovies.map(movie => {
-          return (
-            <li key={movie}>
-              <Link to={`${movie}`} state={{ from: location }}>
-                {movie}
-              </Link>
-            </li>
-          );
-        })} */}
         {results &&
           results.map(({ id, title, poster_path }) => (
-            <li key={id} to={`/movies/${id}`} state={{ from: location }}>
-              {/* <img
-                  src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                  alt={title}
-                  width="200"
-                  height="auto"
-                /> */}
-              <p>{title}</p>
+            <li key={id}>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                <p>{title}</p>
+              </Link>
             </li>
           ))}
       </ul>

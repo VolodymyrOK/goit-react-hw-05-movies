@@ -21,17 +21,19 @@ const MovieDetails = () => {
   }, [movieId]);
 
   const { title, overview, vote_average, poster_path, genres } = result;
-  console.log(genres && genres.map(genre => genre.name));
 
   return (
     <>
       <Link to={backLinkLocationRef.current}>Back</Link>
       <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt={title}
-          width="300"
-        />
+        {poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={title}
+            width="300"
+          />
+        )}
+
         <div>
           <h1>{title}</h1>
           <p>User score: {Math.round(vote_average * 10)}%</p>
