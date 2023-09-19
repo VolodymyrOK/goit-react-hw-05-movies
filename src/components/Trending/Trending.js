@@ -1,15 +1,20 @@
 import { H1, Li, LinkRef, Title, Ul } from './Trending.styled';
+import poster from '../../images/holding-blank-card.jpg';
 
-const Trending = ({ results, location }) => {
+const Trending = ({ title, results, location }) => {
   return (
     <>
-      <H1>Trending today</H1>
+      {results.length ? <H1>{title}</H1> : ''}
       <Ul>
         {results.map(({ id, title, poster_path }) => (
           <Li key={id}>
             <LinkRef to={`/movies/${id}`} state={{ from: location }}>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                src={
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+                    : poster
+                }
                 alt={title}
                 width="250"
               />

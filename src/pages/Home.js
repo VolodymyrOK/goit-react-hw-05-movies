@@ -22,7 +22,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div>{results && <Trending results={results} location={location} />}</div>
+    <div>
+      {results && (
+        <Trending
+          title={'Trending today'}
+          results={results}
+          location={location}
+        />
+      )}
+    </div>
   );
 };
 
