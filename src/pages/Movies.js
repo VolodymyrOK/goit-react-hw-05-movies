@@ -1,6 +1,7 @@
 import { fetchMovieQuery } from 'components/Api/Api';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { MessageToast } from 'components/Messages/Messages';
 
 const Movies = () => {
   const location = useLocation();
@@ -15,10 +16,9 @@ const Movies = () => {
       try {
         const dataFetch = await fetchMovieQuery(queryName);
 
-        if (dataFetch.results.length === 0) alert('ничего нет');
         setResults(dataFetch.results);
       } catch (error) {
-        console.log(error.code);
+        MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     searchMovies();
@@ -27,7 +27,8 @@ const Movies = () => {
   const onSearchSubmit = evt => {
     evt.preventDefault();
     if (queryMovie.trim() === '')
-      alert('enter the name of the movie to search');
+      MessageToast('emptysearch', 'Enter data to Search');
+    !results.length && MessageToast('errorfound', 'Nothing found');
     setSearchParams({ query: queryMovie });
   };
   const onSearchInput = evt => {

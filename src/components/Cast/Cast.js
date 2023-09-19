@@ -1,6 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieCast } from 'components/Api/Api';
+import { Delimiter, Img, InfoActor, InfoText, Li, Ul } from './Cast.styled';
+import poster from '../../images/no_photo_sm.jpg';
+import { MessageToast } from 'components/Messages/Messages';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -12,33 +15,38 @@ const Cast = () => {
         const dataFetchCast = await fetchMovieCast(movieId);
         setResults(dataFetchCast.cast);
       } catch (error) {
-        console.error(error.code);
+        MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     getDataMoviesCast();
   }, [movieId]);
 
   return (
-    <div>
+    <>
+      <Delimiter></Delimiter>
       {!results.length ? (
-        <p>we don't have any information about the cast</p>
+        <InfoText>We don't have any information about the cast</InfoText>
       ) : (
-        <ul>
+        <Ul>
           {results.map(({ id, profile_path, character, name }) => (
-            <li key={id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+            <Li key={id}>
+              <Img
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                    : poster
+                }
                 alt={name}
-                width="150"
-                height="auto"
               />
-              <p>{name}</p>
-              <p>Character: {character}</p>
-            </li>
+              <InfoActor>{name}</InfoActor>
+              <InfoActor>
+                <span>Character:</span> {character}
+              </InfoActor>
+            </Li>
           ))}
-        </ul>
+        </Ul>
       )}
-    </div>
+    </>
   );
 };
 

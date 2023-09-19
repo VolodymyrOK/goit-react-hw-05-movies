@@ -1,31 +1,24 @@
+import { Loader } from 'components/Loader/Loader';
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import styled from 'styled-components';
-
-const StyledLink = styled(NavLink)`
-  color: #212121;
-
-  &.active {
-    color: orangered;
-  }
-`;
+import { Outlet } from 'react-router-dom';
+import { Container, Footer, Nav, StyledLink } from './Layoiut.styled';
 
 const Layout = () => {
   return (
-    <div>
+    <Container>
       <header>
-        <nav>
+        <Nav>
           <StyledLink to="/">Home</StyledLink>
           <StyledLink to="/movies">Movies</StyledLink>
-        </nav>
+        </Nav>
       </header>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>
-      <footer></footer>
-    </div>
+      <Footer> © VK, 2023</Footer>
+    </Container>
   );
 };
 

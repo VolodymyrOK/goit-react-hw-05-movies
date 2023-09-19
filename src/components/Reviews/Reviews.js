@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieReviews } from 'components/Api/Api';
+import { Author, Delimiter, InfoText, Li, TextReview } from './Review.styled';
+import { MessageToast } from 'components/Messages/Messages';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -13,27 +15,30 @@ const Reviews = () => {
 
         setResults(dataFetchReviews.results);
       } catch (error) {
-        console.error(error.code);
+        MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     getDataMoviesReviews();
   }, [movieId]);
 
   return (
-    <div>
+    <>
+      <Delimiter></Delimiter>
       {!results.length ? (
-        <p>we don't have any information about the reviews</p>
+        <InfoText>We don't have any information about the reviews</InfoText>
       ) : (
         <ul>
           {results.map(({ id, author, content }) => (
-            <li key={id}>
-              <p>Author: {author}</p>
-              <p> {content}</p>
-            </li>
+            <Li key={id}>
+              <Author>
+                <span>Author:</span> {author}
+              </Author>
+              <TextReview> {content}</TextReview>
+            </Li>
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 };
 

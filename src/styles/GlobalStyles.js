@@ -35,6 +35,11 @@ ul, li {
     margin: 0;
     padding:0;
 }
+
+a {
+  text-decoration: none;
+}
+
 img {
     display: block;
     max-width: 100%;
