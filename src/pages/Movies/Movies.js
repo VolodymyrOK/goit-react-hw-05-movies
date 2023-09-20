@@ -32,7 +32,6 @@ const Movies = () => {
       <FormApp />
       {results.length > 0 && <H2>Searching results</H2>}
       {results.length > 0 && <MoviesList results={results} />}
-      {results.length === 0 && MessageToast('errorfound', 'Nothing found!')}
     </>
   );
 };
