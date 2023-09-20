@@ -1,10 +1,10 @@
-import { H1, Li, LinkRef, Title, Ul } from './Trending.styled';
+import { H2, Li, LinkRef, Title, Ul } from './Trending.styled';
 import poster from '../../images/holding-blank-card.jpg';
 
 const Trending = ({ title, results, location }) => {
   return (
     <>
-      {results.length ? <H1>{title}</H1> : ''}
+      {results.length ? <H2>{title}</H2> : ''}
       <Ul>
         {results.map(({ id, title, poster_path }) => (
           <Li key={id}>
