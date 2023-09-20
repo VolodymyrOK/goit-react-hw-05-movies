@@ -13,7 +13,6 @@ const FormApp = () => {
       MessageToast('emptysearch', 'Enter data to Search');
       return;
     }
-    // !results.length && MessageToast('errorfound', 'Nothing found');
     setSearchParams({ query });
   };
 

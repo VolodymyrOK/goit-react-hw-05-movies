@@ -31,6 +31,7 @@ const DetailInfo = ({ result }) => {
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt={title}
             width="300"
+            height="400"
           />
         )}
 

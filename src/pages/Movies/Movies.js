@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Form, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { fetchMovieQuery } from 'components/Api/Api';
 import { H1, H2 } from './Movies.styled';
 import MoviesList from 'components/MoviesList/MoviesList';
