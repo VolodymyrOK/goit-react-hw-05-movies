@@ -1,6 +1,6 @@
 import { Loader } from 'components/Loader/Loader';
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Suspense, useRef } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import {
   AdditionalList,
   Genres,
@@ -15,11 +15,13 @@ import {
 } from './DetailInfo.styled';
 import { IoCaretBackSharp } from 'react-icons/io5';
 
-const DetailInfo = ({ result, location }) => {
+const DetailInfo = ({ result }) => {
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { title, overview, vote_average, poster_path, genres } = result;
   return (
     <>
-      <LinkBack to={location.current}>
+      <LinkBack to={backLinkLocationRef.current}>
         <IoCaretBackSharp />
         Back
       </LinkBack>

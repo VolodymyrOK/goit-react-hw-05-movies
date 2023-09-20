@@ -1,14 +1,12 @@
 import { fetchMovieId } from 'components/Api/Api';
 import DetailInfo from 'components/DetailInfo/DetailInfo';
 import { MessageToast } from 'components/Messages/Messages';
-import { useEffect, useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
-  const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     async function getDataMovieId() {
@@ -22,11 +20,7 @@ const MovieDetails = () => {
     getDataMovieId();
   }, [movieId]);
 
-  return (
-    <div>
-      {result && <DetailInfo result={result} location={backLinkLocationRef} />}
-    </div>
-  );
+  return <div>{result && <DetailInfo result={result} />}</div>;
 };
 
 export default MovieDetails;

@@ -1,12 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const H2 = styled.h2`
-  color: blue;
-  margin-top: 15px;
-  margin-bottom: 25px;
-`;
-
 export const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +10,7 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   width: 250px;
   border-radius: 8px;
-  padding: 4px;
+  padding: 6px;
   box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
@@ -27,6 +21,10 @@ export const Li = styled.li`
 `;
 export const LinkRef = styled(Link)`
   outline: none;
+`;
+export const Img = styled.img`
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 export const Title = styled.p`

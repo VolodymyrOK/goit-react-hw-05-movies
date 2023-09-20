@@ -4,10 +4,10 @@ import Layout from './Layout/Layout';
 import Cast from './Cast/Cast';
 import Reviews from './Reviews/Reviews';
 
-const Home = lazy(() => import('../pages/Home'));
-const Movies = lazy(() => import('../pages/Movies'));
-const MovieDetails = lazy(() => import('../pages/MovieDetails'));
-const NotFound = lazy(() => import('../pages/NotFound'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
+const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
   return (
@@ -19,8 +19,8 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="review" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

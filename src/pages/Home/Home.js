@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { fetchMovies } from 'components/Api/Api';
-import Trending from 'components/Trending/Trending';
 import { MessageToast } from 'components/Messages/Messages';
+import { H1 } from './Home.styled';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 const Home = () => {
   const [results, setResults] = useState([]);
-  const location = useLocation();
 
   useEffect(() => {
     async function getDataMovies() {
@@ -23,13 +22,8 @@ const Home = () => {
 
   return (
     <div>
-      {results && (
-        <Trending
-          title={'Trending today'}
-          results={results}
-          location={location}
-        />
-      )}
+      <H1>Trending today</H1>
+      {results && <MoviesList results={results} />}
     </div>
   );
 };
