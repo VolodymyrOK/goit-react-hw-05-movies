@@ -27,8 +27,6 @@ const Home = () => {
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
         setTotalPages(dataFetch.total_pages);
-        console.log('dataFetch.total_pages', dataFetch.total_pages);
-        console.log('dataFetch.results', dataFetch.results);
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       } finally {
@@ -38,15 +36,15 @@ const Home = () => {
     getDataMovies();
   }, [page]);
 
-  // useEffect(() => {
-  //   if (results.length === totalPages && totalPages !== 0)
-  //     MessageToast('foundok', `Search completed. There is nothing more.`);
-  //   if (results.length > totalPages)
-  //     MessageToast(
-  //       'foundok',
-  //       `Search completed. The number of requested images has exceeded the maximum allowed.`
-  //     );
-  // }, [results.length, totalPages]);
+  useEffect(() => {
+    if (results.length === totalPages && totalPages !== 0)
+      MessageToast('foundok', `Search completed. There is nothing more.`);
+    if (results.length > totalPages)
+      MessageToast(
+        'foundok',
+        `Search completed. The number of requested images has exceeded the maximum allowed.`
+      );
+  }, [results.length, totalPages]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
