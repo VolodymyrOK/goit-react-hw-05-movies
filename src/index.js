@@ -4,11 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from 'components/App';
 import { GlobalStyle } from 'styles/GlobalStyles';
 import { Toaster } from 'react-hot-toast';
+import { Scroll } from 'components/Scroll/Scroll';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/goit-react-hw-05-movies">
       <App />
+      <Scroll />
     </BrowserRouter>
     <Toaster />
     <GlobalStyle />

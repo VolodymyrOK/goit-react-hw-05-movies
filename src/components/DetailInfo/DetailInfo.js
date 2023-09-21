@@ -36,7 +36,7 @@ const DetailInfo = ({ result }) => {
     release_date,
     spoken_languages,
   } = result;
-  console.log(result);
+
   return (
     <>
       <LinkBack to={backLinkLocationRef.current}>

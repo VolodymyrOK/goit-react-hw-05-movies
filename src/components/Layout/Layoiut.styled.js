@@ -30,7 +30,7 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const Footer = styled.footer`
-  margin-top: 48px;
+  margin-top: 32px;
   margin-bottom: 48px;
   text-align: center;
 `;

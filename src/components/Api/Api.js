@@ -6,9 +6,10 @@ axios.defaults.headers.common['Authorization'] =
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 const LANGUAGE = 'en-US';
 
-export const fetchMovies = async () => {
+export const fetchMovies = async page => {
   const params = new URLSearchParams({
     language: LANGUAGE,
+    page: page,
   });
   const resp = await axios.get('trending/movie/day', { params });
   return resp.data;

@@ -4,6 +4,7 @@ import { fetchMovieCast } from 'components/Api/Api';
 import { Delimiter, Img, InfoActor, InfoText, Li, Ul } from './Cast.styled';
 import poster from '../../images/no_photo_sm.jpg';
 import { MessageToast } from 'components/Messages/Messages';
+import { nanoid } from 'nanoid';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -29,7 +30,7 @@ const Cast = () => {
       ) : (
         <Ul>
           {results.map(({ id, profile_path, character, name }) => (
-            <Li key={id}>
+            <Li key={nanoid}>
               <Img
                 src={
                   profile_path

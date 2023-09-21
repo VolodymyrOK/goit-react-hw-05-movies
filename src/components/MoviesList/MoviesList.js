@@ -1,14 +1,15 @@
 import { useLocation } from 'react-router-dom';
 import { Img, Li, LinkRef, Title, Ul } from './MoviesList.styled';
 import poster from '../../images/holding-blank-card.jpg';
+import { nanoid } from 'nanoid';
 
 const MoviesList = ({ results }) => {
   const location = useLocation();
   return (
     <Ul>
       {results.map(({ id, title, poster_path }) => (
-        <Li key={id}>
-          <LinkRef to={`/movies/${id}`} state={{ from: location }}>
+        <Li key={nanoid}>
+          <LinkRef to={`/movies/${nanoid}`} state={{ from: location }}>
             <Img
               src={
                 poster_path
