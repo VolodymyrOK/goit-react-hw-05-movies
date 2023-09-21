@@ -48,18 +48,17 @@ const Home = () => {
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
-    console.log(page);
     scroll.scrollMore(500);
   };
 
   return (
-    <div>
+    <>
       <H1>Trending today</H1>
       {results && <MoviesList results={results} />}
       {totalPages > results.length && !loading && (
         <LoadMore onClick={onloadMore} />
       )}
-    </div>
+    </>
   );
 };
 

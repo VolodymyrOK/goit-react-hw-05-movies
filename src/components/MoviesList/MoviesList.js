@@ -9,7 +9,7 @@ const MoviesList = ({ results }) => {
     <Ul>
       {results.map(({ id, title, poster_path }) => (
         <Li key={nanoid}>
-          <LinkRef to={`/movies/${nanoid}`} state={{ from: location }}>
+          <LinkRef to={`/movies/${id}`} state={{ from: location }}>
             <Img
               src={
                 poster_path
