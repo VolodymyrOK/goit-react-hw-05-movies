@@ -20,9 +20,6 @@ const Movies = () => {
 
         setResults(dataFetch.results);
 
-        console.log(results.length);
-        console.log(dataFetch.results.length);
-
         if (results.length === 0) return;
         !dataFetch.results.length &&
           MessageToast('errorfound', 'Nothing found!');
