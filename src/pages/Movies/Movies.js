@@ -25,7 +25,6 @@ const Movies = () => {
         const dataFetch = await fetchMovieQuery(queryName, page);
 
         setResults(dataFetch.results);
-
         if (dataFetch.total_pages === 0)
           return MessageToast('errorfound', 'Nothing found');
 
@@ -44,6 +43,7 @@ const Movies = () => {
   }, [page, queryName]);
 
   useEffect(() => {
+    console.log(results.length, totalPages);
     if (results.length === totalPages && totalPages !== 0)
       MessageToast('foundok', `Search completed. There is nothing more.`);
     if (results.length > totalPages)
