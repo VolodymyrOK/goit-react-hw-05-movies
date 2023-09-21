@@ -23,11 +23,10 @@ export const fetchMovieId = async movieId => {
   return resp.data;
 };
 
-export const fetchMovieQuery = async (keyWord, page) => {
+export const fetchMovieQuery = async keyWord => {
   const params = new URLSearchParams({
     language: LANGUAGE,
     query: keyWord,
-    page: page,
   });
   const resp = await axios.get(`search/movie`, { params });
   return resp.data;

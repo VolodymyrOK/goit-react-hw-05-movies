@@ -17,13 +17,6 @@ const Home = () => {
       try {
         setLoading(true);
         const dataFetch = await fetchMovies(page);
-        setResults(dataFetch.results);
-
-        if (dataFetch.total_pages === 0)
-          return MessageToast('errorfound', 'Nothing found');
-
-        if (page === 1)
-          MessageToast('foundok', `Found ${dataFetch.total_pages} movies`);
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
         setTotalPages(dataFetch.total_pages);
@@ -35,16 +28,6 @@ const Home = () => {
     }
     getDataMovies();
   }, [page]);
-
-  useEffect(() => {
-    if (results.length === totalPages && totalPages !== 0)
-      MessageToast('foundok', `Search completed. There is nothing more.`);
-    if (results.length > totalPages)
-      MessageToast(
-        'foundok',
-        `Search completed. The number of requested images has exceeded the maximum allowed.`
-      );
-  }, [results.length, totalPages]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
