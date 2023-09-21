@@ -10,6 +10,20 @@ export const LinkBack = styled(Link)`
   font-weight: 500;
 `;
 
+export const Paragraph = styled.p`
+  margin-bottom: 8px;
+  & > span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+`;
+
+export const HomePage = styled(Link)`
+  color: blueviolet;
+  font-size: 18px;
+  font-weight: 500;
+`;
+
 export const LinkAddInfo = styled(Link)`
   color: #212121;
   font-size: 18px;
@@ -60,4 +74,17 @@ export const Genres = styled.li`
 export const AdditionalList = styled.ul`
   display: flex;
   gap: 24px;
+`;
+
+export const AddInfoWrap = styled.div`
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+`;
+
+export const AddInfoItem = styled.div`
+  flex-basis: calc((100% - 24px) / 2);
+  display: flex;
+  flex-direction: column;
 `;

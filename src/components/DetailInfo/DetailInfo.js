@@ -1,16 +1,20 @@
 import { Loader } from 'components/Loader/Loader';
 import { Suspense, useRef } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
+  AddInfoItem,
+  AddInfoWrap,
   AdditionalList,
   Genres,
   H1,
   H2,
   H3,
+  HomePage,
   LinkAddInfo,
   LinkBack,
   MainInfo,
   Overview,
+  Paragraph,
   Poster,
 } from './DetailInfo.styled';
 import { IoCaretBackSharp } from 'react-icons/io5';
@@ -18,7 +22,21 @@ import { IoCaretBackSharp } from 'react-icons/io5';
 const DetailInfo = ({ result }) => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
-  const { title, overview, vote_average, poster_path, genres } = result;
+  const {
+    title,
+    overview,
+    vote_average,
+    // poster_path,
+    backdrop_path,
+    genres,
+    production_companies,
+    production_countries,
+    budget,
+    homepage,
+    release_date,
+    spoken_languages,
+  } = result;
+  console.log(result);
   return (
     <>
       <LinkBack to={backLinkLocationRef.current}>
@@ -26,9 +44,9 @@ const DetailInfo = ({ result }) => {
         Back
       </LinkBack>
       <MainInfo>
-        {poster_path && (
+        {backdrop_path && (
           <Poster
-            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
             alt={title}
             width="300"
             height="400"
@@ -37,16 +55,84 @@ const DetailInfo = ({ result }) => {
 
         <div>
           <H1>{title}</H1>
-          <p>User score: {Math.round(vote_average * 10)}%</p>
+          {homepage && (
+            <Paragraph>
+              Homepage:{' '}
+              <HomePage to={homepage} target="_blank">
+                {homepage}
+              </HomePage>
+            </Paragraph>
+          )}
+          {release_date && (
+            <Paragraph>
+              Release date: <span>{release_date}</span>
+            </Paragraph>
+          )}
+          {budget > 0 && (
+            <Paragraph>
+              Budget: <span>{budget}</span>
+            </Paragraph>
+          )}
+          {vote_average && (
+            <Paragraph>
+              User score: <span>{Math.round(vote_average * 10)}%</span>
+            </Paragraph>
+          )}
           <H2>Overview</H2>
           <Overview>{overview}</Overview>
-          <H2>Genres</H2>
-          <ul>
-            {genres &&
-              genres.map((genre, ind) => (
-                <Genres key={ind}>{genre.name}</Genres>
-              ))}
-          </ul>
+          <AddInfoWrap>
+            <AddInfoItem>
+              <H2>Genres</H2>
+              <ul>
+                {genres &&
+                  genres.map((genre, ind) => (
+                    <Genres key={ind}>{genre.name}</Genres>
+                  ))}
+              </ul>
+            </AddInfoItem>
+            <AddInfoItem>
+              <H2>Production companies</H2>
+              <ul>
+                {production_companies &&
+                  production_companies.map((production_companie, ind) => (
+                    <Genres key={ind}>
+                      {production_companie.name +
+                        ` / ` +
+                        production_companie.origin_country}
+                    </Genres>
+                  ))}
+              </ul>
+            </AddInfoItem>
+            <AddInfoItem>
+              <H2>Production countries</H2>
+              <ul>
+                {production_countries &&
+                  production_countries.map((production_countrie, ind) => (
+                    <Genres key={ind}>
+                      {production_countrie.iso_3166_1 +
+                        ` / ` +
+                        production_countrie.name}
+                    </Genres>
+                  ))}
+              </ul>
+            </AddInfoItem>
+            <AddInfoItem>
+              <H2>Spoken languages</H2>
+              <ul>
+                {spoken_languages &&
+                  spoken_languages.map((spoken_language, ind) => (
+                    <Genres key={ind}>
+                      {spoken_language.english_name +
+                        ` / ` +
+                        spoken_language.iso_639_1 +
+                        ` / ` +
+                        spoken_language.name}
+                    </Genres>
+                  ))}
+              </ul>
+            </AddInfoItem>
+          </AddInfoWrap>
+
           <H3>Additional information</H3>
           <AdditionalList>
             <li>
