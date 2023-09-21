@@ -19,16 +19,19 @@ const Movies = () => {
         const dataFetch = await fetchMovieQuery(queryName);
 
         setResults(dataFetch.results);
-        // if (results.length === 0) {
-        //   MessageToast('errorfound', 'Nothing found!');
-        //   return;
-        // }
+
+        console.log(results.length);
+        console.log(dataFetch.results.length);
+
+        if (results.length === 0) return;
+        !dataFetch.results.length &&
+          MessageToast('errorfound', 'Nothing found!');
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     searchMovies();
-  }, [queryName]);
+  }, [queryName, results.length]);
 
   return (
     <>
