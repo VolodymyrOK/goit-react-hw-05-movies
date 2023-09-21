@@ -19,16 +19,16 @@ const Movies = () => {
         const dataFetch = await fetchMovieQuery(queryName);
 
         setResults(dataFetch.results);
-        if (results.length === 0) {
-          MessageToast('errorfound', 'Nothing found!');
-          return;
-        }
+        // if (results.length === 0) {
+        //   MessageToast('errorfound', 'Nothing found!');
+        //   return;
+        // }
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     searchMovies();
-  }, [queryName, results.length]);
+  }, [queryName]);
 
   return (
     <>
