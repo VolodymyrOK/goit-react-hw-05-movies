@@ -1,6 +1,6 @@
 import { Loader } from 'components/Loader/Loader';
 import { Suspense, useRef } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import {
   AddInfoItem,
   AddInfoWrap,
