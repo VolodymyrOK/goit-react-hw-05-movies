@@ -73,7 +73,7 @@ const DetailInfo = ({ result }) => {
               Budget: <span>{budget}</span>
             </Paragraph>
           )}
-          {vote_average && (
+          {vote_average > 0 && (
             <Paragraph>
               User score: <span>{Math.round(vote_average * 10)}%</span>
             </Paragraph>
