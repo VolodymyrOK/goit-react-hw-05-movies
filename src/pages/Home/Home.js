@@ -8,7 +8,7 @@ import { LoadMore } from 'components/LoadMore/LoadMore';
 
 const Home = () => {
   const [results, setResults] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const Home = () => {
         const dataFetch = await fetchMovies(page);
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
-        setTotalPages(dataFetch.total_pages);
+        setTotalResults(dataFetch.total_results);
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       } finally {
@@ -38,7 +38,7 @@ const Home = () => {
     <>
       <H1>Trending today</H1>
       {results && <MoviesList results={results} />}
-      {totalPages > results.length && !loading && (
+      {totalResults > results.length && !loading && (
         <LoadMore onClick={onloadMore} />
       )}
     </>

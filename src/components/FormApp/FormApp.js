@@ -8,11 +8,12 @@ const FormApp = () => {
 
   const onSearchSubmit = evt => {
     evt.preventDefault();
-    const query = evt.target.query.value.trim();
+    let query = evt.target.query.value.trim();
     if (query === '') {
       MessageToast('emptysearch', 'Enter data to Search');
       return;
     }
+    query = Date.now() + '/' + evt.target.query.value.trim().toLowerCase();
     setSearchParams({ query });
   };
 

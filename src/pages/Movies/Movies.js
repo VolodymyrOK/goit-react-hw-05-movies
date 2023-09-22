@@ -13,7 +13,7 @@ const Movies = () => {
   const queryName = searchParams.get('query') ?? '';
 
   const [results, setResults] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -22,13 +22,19 @@ const Movies = () => {
     async function searchMovies() {
       try {
         setLoading(true);
+
         const dataFetch = await fetchMovieQuery(queryName, page);
 
-        setResults(prevResults => [...prevResults, ...dataFetch.results]);
-        setTotalPages(dataFetch.total_pages);
-
-        if (dataFetch.total_pages === 0)
+        if (dataFetch.results === 0)
           return MessageToast('errorfound', 'Nothing found');
+
+        if (page === 1) {
+          MessageToast('foundok', `Found ${dataFetch.total_results} movies`);
+          setResults(dataFetch.results);
+        } else {
+          setResults(prevResults => [...prevResults, ...dataFetch.results]);
+        }
+        setTotalResults(dataFetch.total_results);
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       } finally {
@@ -37,6 +43,16 @@ const Movies = () => {
     }
     searchMovies();
   }, [queryName, page]);
+
+  useEffect(() => {
+    if (results.length === totalResults && totalResults !== 0)
+      MessageToast('foundok', `Search completed. There is nothing more.`);
+    if (results.length > totalResults)
+      MessageToast(
+        'foundok',
+        `Search completed. The number of requested images has exceeded the maximum allowed.`
+      );
+  }, [results.length, totalResults]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
@@ -49,7 +65,7 @@ const Movies = () => {
       <FormApp />
       {results.length > 0 && <H2>Searching results</H2>}
       {results.length > 0 && <MoviesList results={results} />}
-      {totalPages > results.length && !loading && (
+      {totalResults > results.length && !loading && (
         <LoadMore onClick={onloadMore} />
       )}
     </>
