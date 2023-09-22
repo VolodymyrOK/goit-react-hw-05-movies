@@ -16,6 +16,7 @@ const Movies = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [flagSearch] = useState(false);
 
   useEffect(() => {
     if (!queryName) return;
@@ -25,15 +26,16 @@ const Movies = () => {
 
         const dataFetch = await fetchMovieQuery(queryName, page);
 
-        if (dataFetch.results === 0)
+        if (dataFetch.total_results === 0)
           return MessageToast('errorfound', 'Nothing found');
 
-        if (page === 1) {
-          MessageToast('foundok', `Found ${dataFetch.total_results} movies`);
-          setResults(dataFetch.results);
-        } else {
-          setResults(prevResults => [...prevResults, ...dataFetch.results]);
-        }
+        MessageToast('foundok', `Found ${dataFetch.total_results} movies`);
+        setResults(dataFetch.results);
+        console.log(flagSearch);
+        !flagSearch
+          ? setResults(prevResults => [...prevResults, ...dataFetch.results])
+          : setTotalResults(dataFetch.results);
+
         setTotalResults(dataFetch.total_results);
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
@@ -42,7 +44,7 @@ const Movies = () => {
       }
     }
     searchMovies();
-  }, [queryName, page]);
+  }, [queryName, page, flagSearch]);
 
   useEffect(() => {
     if (results.length === totalResults && totalResults !== 0)
