@@ -16,7 +16,6 @@ const Movies = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [flagSearch] = useState(false);
 
   useEffect(() => {
     if (!queryName) return;
@@ -26,15 +25,12 @@ const Movies = () => {
 
         const dataFetch = await fetchMovieQuery(queryName, page);
 
-        if (dataFetch.total_results === 0)
+        if (dataFetch.total_results === 0) {
+          setResults([]);
           return MessageToast('errorfound', 'Nothing found');
+        }
 
-        MessageToast('foundok', `Found ${dataFetch.total_results} movies`);
-        setResults(dataFetch.results);
-        console.log(flagSearch);
-        !flagSearch
-          ? setResults(prevResults => [...prevResults, ...dataFetch.results])
-          : setTotalResults(dataFetch.results);
+        setResults(prevResults => [...prevResults, ...dataFetch.results]);
 
         setTotalResults(dataFetch.total_results);
       } catch (error) {
@@ -44,16 +40,19 @@ const Movies = () => {
       }
     }
     searchMovies();
-  }, [queryName, page, flagSearch]);
+  }, [queryName, page, searchParams]);
 
   useEffect(() => {
-    if (results.length === totalResults && totalResults !== 0)
-      MessageToast('foundok', `Search completed. There is nothing more.`);
-    if (results.length > totalResults)
+    if (
+      (results.length !== 0 || totalResults !== 0) &&
+      results.length < totalResults
+    )
       MessageToast(
         'foundok',
-        `Search completed. The number of requested images has exceeded the maximum allowed.`
+        `Found ${results.length} movies out of ${totalResults}`
       );
+    if (results.length === totalResults && totalResults !== 0)
+      MessageToast('foundok', `Search completed. There is nothing more.`);
   }, [results.length, totalResults]);
 
   const onloadMore = () => {
@@ -65,9 +64,11 @@ const Movies = () => {
     <>
       <H1>Search Films</H1>
       <FormApp />
-      {results.length > 0 && <H2>Searching results</H2>}
+      {results.length > 0 && (
+        <H2>Searching results - Total found: {totalResults} movies</H2>
+      )}
       {results.length > 0 && <MoviesList results={results} />}
-      {totalResults > results.length && !loading && (
+      {totalResults > results.length && !loading && results.length !== 0 && (
         <LoadMore onClick={onloadMore} />
       )}
     </>

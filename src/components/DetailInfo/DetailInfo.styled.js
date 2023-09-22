@@ -28,6 +28,7 @@ export const LinkAddInfo = styled(Link)`
   color: #212121;
   font-size: 18px;
   font-weight: 500;
+  text-decoration: underline;
   &:is(:hover, :focus) {
     color: blue;
   }
