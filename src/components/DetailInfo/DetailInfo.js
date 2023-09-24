@@ -26,7 +26,6 @@ const DetailInfo = ({ result }) => {
     title,
     overview,
     vote_average,
-    // poster_path,
     backdrop_path,
     genres,
     production_companies,

@@ -22,7 +22,6 @@ const Movies = () => {
     async function searchMovies() {
       try {
         setLoading(true);
-
         const dataFetch = await fetchMovieQuery(queryName, page);
 
         if (dataFetch.total_results === 0) {
@@ -32,7 +31,6 @@ const Movies = () => {
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
         console.log(dataFetch.results);
-        console.log('loading', loading);
 
         setTotalResults(dataFetch.total_results);
       } catch (error) {
@@ -45,20 +43,21 @@ const Movies = () => {
   }, [queryName, page, searchParams]);
 
   useEffect(() => {
-    if (page === 1 && totalResults)
+    if (page === 1 && totalResults && loading)
       MessageToast('foundok', `Found  ${totalResults} movies`);
 
-    if (page >= totalResults / 20 && totalResults)
+    if (page >= totalResults / 20 && totalResults && loading)
       MessageToast('foundok', `Search completed. There is nothing more.`);
-  }, [page, totalResults]);
+  }, [loading, page, totalResults]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
     scroll.scrollMore(500);
   };
 
-  const clearResults = queryName => {
+  const clearResults = () => {
     setResults([]);
+    setPage(1);
   };
 
   return (
