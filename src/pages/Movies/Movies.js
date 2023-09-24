@@ -43,12 +43,12 @@ const Movies = () => {
   }, [queryName, page, searchParams]);
 
   useEffect(() => {
-    if (page === 1 && totalResults && loading)
+    if (page === 1 && totalResults)
       MessageToast('foundok', `Found  ${totalResults} movies`);
 
-    if (page >= totalResults / 20 && totalResults && loading)
+    if (page >= totalResults / 20 && totalResults)
       MessageToast('foundok', `Search completed. There is nothing more.`);
-  }, [loading, page, totalResults]);
+  }, [page, totalResults]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
