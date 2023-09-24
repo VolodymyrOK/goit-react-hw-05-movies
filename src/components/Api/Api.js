@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const LANGUAGE = 'ru-Ru';
+const LANGUAGE = 'en-Us';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 axios.defaults.params = { language: LANGUAGE };
 axios.defaults.headers.common['Authorization'] =
