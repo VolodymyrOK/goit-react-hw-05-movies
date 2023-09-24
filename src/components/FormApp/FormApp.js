@@ -3,7 +3,7 @@ import { MessageToast } from 'components/Messages/Messages';
 import { Button, Input, SearchForm } from './FormApp.styled';
 import { BsSearch } from 'react-icons/bs';
 
-const FormApp = () => {
+const FormApp = ({ onClear }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryName = searchParams.get('query') ?? '';
 
@@ -16,6 +16,7 @@ const FormApp = () => {
     }
 
     setSearchParams({ query });
+    onClear(query);
   };
 
   return (

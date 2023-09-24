@@ -43,8 +43,6 @@ const Movies = () => {
   }, [queryName, page, searchParams]);
 
   useEffect(() => {
-    console.log(page);
-    console.log(totalResults);
     if (page === 1 && totalResults)
       MessageToast('foundok', `Found  ${totalResults} movies`);
 
@@ -57,11 +55,16 @@ const Movies = () => {
     scroll.scrollMore(500);
   };
 
+  const clearResults = queryName => {
+    console.log(queryName);
+    setResults([]);
+  };
+
   return (
     <>
       <FormWrapper>
         <H1>Search Films</H1>
-        <FormApp />
+        <FormApp onClear={clearResults} />
       </FormWrapper>
       {results.length > 0 && (
         <H2>Searching results - Total found: {totalResults} movies</H2>
