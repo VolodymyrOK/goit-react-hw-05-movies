@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
 import { useSearchParams } from 'react-router-dom';
 import { fetchMovieQuery } from 'components/Api/Api';
-import { H1, H2 } from './Movies.styled';
+import { FormWrapper, H1, H2 } from './Movies.styled';
 import MoviesList from 'components/MoviesList/MoviesList';
 import { MessageToast } from 'components/Messages/Messages';
 import FormApp from 'components/FormApp/FormApp';
@@ -43,17 +43,14 @@ const Movies = () => {
   }, [queryName, page, searchParams]);
 
   useEffect(() => {
-    if (
-      (results.length !== 0 || totalResults !== 0) &&
-      results.length < totalResults
-    )
-      MessageToast(
-        'foundok',
-        `Found ${results.length} movies out of ${totalResults}`
-      );
-    if (results.length === totalResults && totalResults !== 0)
+    console.log(page);
+    console.log(totalResults);
+    if (page === 1 && totalResults)
+      MessageToast('foundok', `Found  ${totalResults} movies`);
+
+    if (page >= totalResults / 20 && totalResults)
       MessageToast('foundok', `Search completed. There is nothing more.`);
-  }, [results.length, totalResults]);
+  }, [page, results.length, totalResults]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
@@ -62,8 +59,10 @@ const Movies = () => {
 
   return (
     <>
-      <H1>Search Films</H1>
-      <FormApp />
+      <FormWrapper>
+        <H1>Search Films</H1>
+        <FormApp />
+      </FormWrapper>
       {results.length > 0 && (
         <H2>Searching results - Total found: {totalResults} movies</H2>
       )}

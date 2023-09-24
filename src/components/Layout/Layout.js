@@ -1,15 +1,29 @@
 import { Loader } from 'components/Loader/Loader';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Footer, Nav, StyledLink } from './Layoiut.styled';
+import {
+  Container,
+  Footer,
+  LinkWrapper,
+  LogoIcon,
+  LogoWrapper,
+  Nav,
+  StyledLink,
+} from './Layout.styled';
 
 const Layout = () => {
   return (
     <Container>
       <header>
         <Nav>
-          <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
+          <LogoWrapper to="/" title="Home page">
+            <LogoIcon />
+            Movie search service
+          </LogoWrapper>
+          <LinkWrapper>
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink to="/movies">Movies</StyledLink>
+          </LinkWrapper>
         </Nav>
       </header>
       <main>

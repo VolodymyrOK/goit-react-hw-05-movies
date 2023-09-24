@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { MessageToast } from 'components/Messages/Messages';
 import { Button, Input, SearchForm } from './FormApp.styled';
+import { BsSearch } from 'react-icons/bs';
 
 const FormApp = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +26,9 @@ const FormApp = () => {
         name="query"
         placeholder="Search movies..."
       />
-      <Button type="submit">Search</Button>
+      <Button type="submit">
+        <BsSearch />
+      </Button>
     </SearchForm>
   );
 };

@@ -1,3 +1,4 @@
+import { ImFilm } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,18 +8,34 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const LogoWrapper = styled(NavLink)`
+  margin-left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: yellow;
+  font-size: 24px;
+  font-weight: 500;
+`;
+export const LinkWrapper = styled.div`
+  margin-right: 32px;
+  display: flex;
+  gap: 18px;
+`;
+
 export const Nav = styled.nav`
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 8px;
   background-color: RoyalBlue;
   border-top-right-radius: 18px;
   border-top-left-radius: 18px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const StyledLink = styled(NavLink)`
   color: yellow;
-  font-weight: 500;
   font-size: 24px;
   outline: none;
   &:is(:hover, :focus) {
@@ -34,4 +51,10 @@ export const Footer = styled.footer`
   margin-top: 32px;
   margin-bottom: 48px;
   text-align: center;
+`;
+
+export const LogoIcon = styled(ImFilm)`
+  width: 48px;
+  height: 48px;
+  color: yellow;
 `;

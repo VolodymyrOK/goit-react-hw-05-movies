@@ -42,7 +42,7 @@ export const MainInfo = styled.div`
 export const Poster = styled.img`
   border: 1px solid teal;
   border-radius: 8px;
-  padding: 8px;
+  padding: 3px;
   box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
