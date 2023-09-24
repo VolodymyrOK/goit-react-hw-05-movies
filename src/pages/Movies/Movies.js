@@ -31,6 +31,8 @@ const Movies = () => {
         }
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
+        console.log(dataFetch.results);
+        console.log('loading', loading);
 
         setTotalResults(dataFetch.total_results);
       } catch (error) {
@@ -48,7 +50,7 @@ const Movies = () => {
 
     if (page >= totalResults / 20 && totalResults)
       MessageToast('foundok', `Search completed. There is nothing more.`);
-  }, [page, results.length, totalResults]);
+  }, [page, totalResults]);
 
   const onloadMore = () => {
     setPage(prev => prev + 1);
@@ -56,7 +58,6 @@ const Movies = () => {
   };
 
   const clearResults = queryName => {
-    console.log(queryName);
     setResults([]);
   };
 
