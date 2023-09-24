@@ -32,7 +32,6 @@ const Movies = () => {
         }
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
-        console.log(dataFetch.results);
 
         setTotalResults(dataFetch.total_results);
       } catch (error) {
