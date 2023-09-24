@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SearchForm = styled.form`
   display: flex;
-  width: 400px;
+  width: 450px;
 
   height: 48px;
   border-radius: 12px;
@@ -16,21 +16,22 @@ export const Input = styled.input`
   align-items: center;
   width: 100%;
   background-color: #fff;
-  border-bottom-right-radius: 8px;
-  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
   border-color: transparent;
   overflow: hidden;
   outline: none;
 `;
 
 export const Button = styled.button`
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-color: transparent;
   opacity: 1;
-  border-bottom-left-radius: 8px;
-  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
