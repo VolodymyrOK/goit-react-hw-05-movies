@@ -12,6 +12,8 @@ const Movies = () => {
   const [searchParams] = useSearchParams();
   const queryName = searchParams.get('query') ?? '';
 
+  const [, setSearchParams] = useSearchParams();
+
   const [results, setResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [page, setPage] = useState(1);
@@ -55,9 +57,10 @@ const Movies = () => {
     scroll.scrollMore(500);
   };
 
-  const clearResults = () => {
+  const clearResults = queryName => {
     setResults([]);
     setPage(1);
+    setSearchParams({ query: queryName });
   };
 
   return (
