@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import {
   Container,
   Footer,
+  Header,
   LinkWrapper,
   LogoIcon,
   LogoWrapper,
@@ -14,7 +15,7 @@ import {
 const Layout = () => {
   return (
     <Container>
-      <header>
+      <Header>
         <Nav>
           <LogoWrapper to="/" title="Home page">
             <LogoIcon />
@@ -25,7 +26,7 @@ const Layout = () => {
             <StyledLink to="/movies">Movies</StyledLink>
           </LinkWrapper>
         </Nav>
-      </header>
+      </Header>
       <main>
         <Suspense fallback={<Loader />}>
           <Outlet />

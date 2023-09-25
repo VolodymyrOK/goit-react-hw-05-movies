@@ -8,6 +8,12 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const Header = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+`;
+
 export const LogoWrapper = styled(NavLink)`
   margin-left: 32px;
   display: flex;
@@ -28,8 +34,8 @@ export const Nav = styled.nav`
   gap: 20px;
   padding: 8px;
   background-color: RoyalBlue;
-  border-top-right-radius: 18px;
-  border-top-left-radius: 18px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   justify-content: space-between;
   align-items: center;
 `;

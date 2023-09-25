@@ -47,7 +47,7 @@ const Movies = () => {
     if (page === 1 && totalResults)
       MessageToast('foundok', `Found  ${totalResults} movies`);
 
-    if (page >= totalResults / 20 && totalResults)
+    if (page >= totalResults / 20 && totalResults && page !== 1)
       MessageToast('foundok', `Search completed. There is nothing more.`);
   }, [page, totalResults]);
 
@@ -56,10 +56,12 @@ const Movies = () => {
     scroll.scrollMore(500);
   };
 
-  const clearResults = queryName => {
+  const clearResults = query => {
+    if (query === queryName)
+      return MessageToast('foundok', `Found  ${totalResults} movies`);
     setResults([]);
     setPage(1);
-    setSearchParams({ query: queryName });
+    setSearchParams({ query });
   };
 
   return (
