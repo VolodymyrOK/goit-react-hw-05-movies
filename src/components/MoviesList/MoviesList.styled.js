@@ -15,6 +15,7 @@ export const Li = styled.li`
   -webkit-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   transition: scale 150ms ease-in;
+  background-color: #cdcdcd;
   &:is(:hover, :focus) {
     scale: 0.99;
   }
@@ -34,5 +35,5 @@ export const Title = styled.p`
   font-size: 18px;
   margin-bottom: 8px;
   text-align: center;
-  color: teal;
+  color: #111111;
 `;

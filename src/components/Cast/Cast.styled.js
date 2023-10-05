@@ -28,6 +28,7 @@ export const Li = styled.li`
   border-radius: 8px;
   flex-basis: calc((100% - 24px) / 8);
   height: auto;
+  background-color: #cdcdcd;
   box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);

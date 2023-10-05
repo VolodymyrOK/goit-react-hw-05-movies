@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieReviews } from 'components/Api/Api';
-import { Author, Delimiter, InfoText, Li, TextReview } from './Review.styled';
+import { Author, Delimiter, InfoText, Li, TextReview } from './Reviews.styled';
 import { MessageToast } from 'components/Messages/Messages';
 
 const Reviews = () => {

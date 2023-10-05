@@ -1,11 +1,33 @@
 import { ImFilm } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import background from '../../images/funart.jpg';
 
 export const Container = styled.div`
   width: 90vw;
   padding: 0 32px;
   margin: 0 auto;
+  height: 100vh;
+  &:before {
+    content: '';
+    background-image: linear-gradient(
+        rgba(106, 191, 235, 0),
+        rgba(106, 191, 235, 1)
+      ),
+      url(${background});
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    opacity: 0.6;
+    filter: blur(1px);
+  }
 `;
 
 export const Header = styled.header`
@@ -26,12 +48,11 @@ export const LogoWrapper = styled(NavLink)`
 export const LinkWrapper = styled.div`
   margin-right: 32px;
   display: flex;
-  gap: 18px;
+  gap: 8px;
 `;
 
 export const Nav = styled.nav`
   display: flex;
-  gap: 20px;
   padding: 8px;
   background-color: RoyalBlue;
   border-top-right-radius: 8px;
@@ -41,15 +62,23 @@ export const Nav = styled.nav`
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
   color: yellow;
   font-size: 24px;
   outline: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background-color 250ms ease-in, color 250ms ease-in;
   &:is(:hover, :focus) {
     color: white;
   }
   &.active {
-    color: orange;
-    text-decoration: underline;
+    color: RoyalBlue;
+    background-color: white;
+    box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+    -webkit-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+    -moz-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
   }
 `;
 

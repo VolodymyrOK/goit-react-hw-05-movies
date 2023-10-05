@@ -32,7 +32,7 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <Footer> © VK, 2023</Footer>
+      <Footer> © VK, Movie search service, 2023</Footer>
     </Container>
   );
 };

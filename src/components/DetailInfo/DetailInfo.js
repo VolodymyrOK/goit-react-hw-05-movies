@@ -12,6 +12,7 @@ import {
   HomePage,
   LinkAddInfo,
   LinkBack,
+  LinkBackWrapper,
   MainInfo,
   Overview,
   Paragraph,
@@ -38,10 +39,11 @@ const DetailInfo = ({ result }) => {
 
   return (
     <>
-      <LinkBack to={backLinkLocationRef.current}>
-        <IoCaretBackSharp />
-        Back
-      </LinkBack>
+      <LinkBackWrapper>
+        <LinkBack to={backLinkLocationRef.current}>
+          <IoCaretBackSharp /> Back
+        </LinkBack>
+      </LinkBackWrapper>
       <MainInfo>
         {backdrop_path && (
           <Poster

@@ -1,13 +1,28 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const LinkBackWrapper = styled.div`
+  display: inline-block;
+`;
+
 export const LinkBack = styled(Link)`
   display: flex;
   align-items: center;
+  padding: 6px 8px 4px 4px;
   margin-bottom: 12px;
   margin-top: 12px;
   font-size: 18px;
   font-weight: 500;
+  border-radius: 8px;
+  color: white;
+  transition: background-color 250ms ease-in, color 250ms ease-in;
+  box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+  -webkit-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+  -moz-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+  &:is(:hover, :focus) {
+    background-color: #cdcdcd;
+    color: RoyalBlue;
+  }
 `;
 
 export const Paragraph = styled.p`
@@ -28,9 +43,18 @@ export const LinkAddInfo = styled(Link)`
   color: #212121;
   font-size: 18px;
   font-weight: 500;
-  text-decoration: underline;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background-color 250ms ease-in;
+  box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+  -webkit-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
+  -moz-box-shadow: 3px 3px 19px 0px rgba(17, 17, 17, 0.75);
   &:is(:hover, :focus) {
     color: blue;
+    background-color: #cdcdcd;
+  }
+  &:active {
+    background-color: #cdcdcd;
   }
 `;
 

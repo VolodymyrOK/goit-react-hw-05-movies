@@ -21,6 +21,7 @@ export const Li = styled.li`
   font-size: 18px;
   padding: 12px;
   border-radius: 8px;
+  background-color: #cdcdcd;
   box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 16px 3px rgba(0, 0, 0, 0.75);
