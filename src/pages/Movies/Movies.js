@@ -20,11 +20,14 @@ const Movies = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
     if (!queryName) return;
     async function searchMovies() {
       try {
         setLoading(true);
-        const dataFetch = await fetchMovieQuery(queryName, page);
+        const dataFetch = await fetchMovieQuery(queryName, page, {
+          signal: controller.signal,
+        });
 
         if (dataFetch.total_results === 0) {
           setResults([]);
@@ -41,6 +44,9 @@ const Movies = () => {
       }
     }
     searchMovies();
+    return () => {
+      controller.abort();
+     }
   }, [queryName, page, searchParams]);
 
   useEffect(() => {

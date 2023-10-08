@@ -10,15 +10,21 @@ const Cast = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
     async function getDataMoviesCast() {
       try {
-        const dataFetchCast = await fetchMovieCast(movieId);
+        const dataFetchCast = await fetchMovieCast(movieId, {
+          signal: controller.signal,
+        });
         setResults(dataFetchCast.cast);
       } catch (error) {
         MessageToast('errorloading', 'OOPS! There was an error!');
       }
     }
     getDataMoviesCast();
+    return () => {
+      controller.abort();
+    }
   }, [movieId]);
 
   return (

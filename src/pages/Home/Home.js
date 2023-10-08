@@ -13,10 +13,13 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
     async function getDataMovies() {
       try {
         setLoading(true);
-        const dataFetch = await fetchMovies(page);
+        const dataFetch = await fetchMovies(page, {
+          signal: controller.signal,
+        });
 
         setResults(prevResults => [...prevResults, ...dataFetch.results]);
         setTotalResults(dataFetch.total_results);
@@ -27,6 +30,9 @@ const Home = () => {
       }
     }
     getDataMovies();
+    return () => {
+      controller.abort();
+    };
   }, [page]);
 
   const onloadMore = () => {
