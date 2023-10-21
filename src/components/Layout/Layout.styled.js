@@ -3,7 +3,14 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import background from '../../images/funart.jpg';
 
+export const Main = styled.main`
+  flex-grow: 1;
+`;
+
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   width: 90vw;
   padding: 0 32px;
   margin: 0 auto;

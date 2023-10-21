@@ -8,6 +8,7 @@ import {
   LinkWrapper,
   LogoIcon,
   LogoWrapper,
+  Main,
   Nav,
   StyledLink,
 } from './Layout.styled';
@@ -27,11 +28,11 @@ const Layout = () => {
           </LinkWrapper>
         </Nav>
       </Header>
-      <main>
+      <Main>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </main>
+      </Main>
       <Footer> © VK, Movie search service, 2023</Footer>
     </Container>
   );
