@@ -8,7 +8,7 @@ import { Scroll } from 'components/Scroll/Scroll';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter">
+    <BrowserRouter>
       <App />
       <Scroll />
     </BrowserRouter>
